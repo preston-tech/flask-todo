@@ -10,8 +10,25 @@ class App extends Component {
     super()
 
     this.setState = {
+      todo: "",
       todos: []
     }
+  }
+
+  addTodo = e => {
+    e.preventDefault()
+
+    axios('https://pjp-flask-todo.herokuapp.com/todos', {
+      title: this.state.todo,
+      done: false
+    })
+    .then(data => {
+      this.setState({
+        todos: [...this.state.todos, res.data],
+        todo: ""
+      })
+    })
+    .catch(err => console.warn("addTodo Error; ", err))
   }
 
   renderTodos = () => {
@@ -33,9 +50,11 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.todos)
     return (
-      <div>
+      <div className="app">
         <h1>Todo App</h1>
+        <from className="add-todo" onSubmit={this.addTodo}></from>
         <div />
 
         {this.renderTodos()}
