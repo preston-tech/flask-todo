@@ -15,6 +15,19 @@ class App extends Component {
     }
   }
 
+  deleteTodo = id => {
+    axios
+      .delete(`https://pjp-flask-todo.herokuapp.com/todos/${id}`)
+      .then(
+        this.setState({
+          todos: this.state.todos.filter(todo => {
+            return todo.id !== id
+          })
+        })
+      )
+      .catch(err => console.warn("deleteTodo error: ", err))
+  }
+
   addTodo = e => {
     e.preventDefault()
 

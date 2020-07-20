@@ -35,7 +35,7 @@ class TodoItem extends Component {
             />
             <p className={this.state.done ? "done" : null}>{this.props.todo.title}</p>
 
-            <button>X</button>
+            <button onClick={() => this.props.handleDelete(this.props.todo.id)}>X</button>
         </div>
     )
 }}
