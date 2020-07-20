@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import App from './components/app';
+import TodoItem from './todoitem'
 
 class App extends Component {
   constructor() {
@@ -16,9 +17,7 @@ class App extends Component {
   renderTodos = () => {
     return this.setState.todos.map(todo => {
       return (
-        <div key={todo.id}>
-          {todo.title}
-        </div>
+        <TodoItem key={todo.id} todo={todo} />
       )
     })
   }
